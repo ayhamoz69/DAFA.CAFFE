@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | DAFA CAFFE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c1e14 100%); /* تدرج لوني بلون القهوة الداكن */
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* تأثير الزجاج (Glassmorphism) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #dcb999, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 5px;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .stat-item h3 {
+            color: #dcb999;
+            margin-bottom: 5px;
+        }
+
+        /* الزر كما في صورتك لكن بلمسة عصرية */
+        .btn-modern {
+            padding: 12px 35px;
+            background: #dcb999;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.4s;
+            display: inline-block;
+        }
+
+        .btn-modern:hover {
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(220, 185, 153, 0.5);
+        }
+
+        /* انيميشن الجافا سكريبت */
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card" id="card">
+        <h1>DAFA</h1>
+        <p>Crafting moments of warmth in every cup. We combine the art of brewing with the science of perfection to bring you the finest coffee experience.</p>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <h3 id="coffee-count">0</h3>
+                <small>Premium Beans</small>
+            </div>
+            <div class="stat-item">
+                <h3 id="expert-count">0</h3>
+                <small>Expert Baristas</small>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-modern">BACK HOME</a>
+    </div>
+
+    <script>
+        // جافا سكريبت لإظهار الكرت عند التحميل وعداد الأرقام
+        window.onload = function() {
+            document.getElementById('card').classList.add('show');
+            
+            // عداد تفاعلي (Interactive Counter)
+            animateValue("coffee-count", 0, 50, 2000);
+            animateValue("expert-count", 0, 12, 2000);
+        };
+
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let current = start;
+            let increment = end > start ? 1 : -1;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            let timer = setInterval(function() {
+                current += increment;
+                obj.innerHTML = current + "+";
+                if (current == end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+    </script>
+</body>
+</html>
